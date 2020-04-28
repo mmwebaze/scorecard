@@ -8,14 +8,13 @@ class IndicatorManagerPage extends StatefulWidget {
 }
 
 class _IndicatorManagerPageState extends State<IndicatorManagerPage> {
-  var identifier = new Map();
   bool monVal = false;
   List<Widget> widgets = new List<Widget>();
+
   _IndicatorManagerPageState(){
     List<Indicator> indicators = IndicatorService().getIndicators();
     for(Indicator indicator in indicators){
       widgets.add(indicatorCheckbox(indicator.name, indicator.isEnabled));
-      identifier[indicator.name] = indicator.isEnabled;
     }
   }
 
@@ -34,6 +33,7 @@ class _IndicatorManagerPageState extends State<IndicatorManagerPage> {
     );
   }
   Widget indicatorCheckbox(String title, bool boolValue){
+
     return Row(
       children: <Widget>[
         Checkbox(
@@ -42,8 +42,6 @@ class _IndicatorManagerPageState extends State<IndicatorManagerPage> {
             setState(() {
               print('KITLO ${value}');
               boolValue = value;
-
-
             });
           },
         ),
